@@ -1,0 +1,130 @@
+\documentclass{tufte-handout}
+
+\usepackage[handout]{physics_summer}
+
+\title{Handout \#1: Mechanics, kinematics}
+\author{D.~Evangelista and A.~Hahn}
+\date{\printdate{6/14/2021}}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item Suggested reading is chapter 1 in \citeauthor{kleppner2014introduction}\cite{kleppner2014introduction}. 
+\item Based on exam coverage, we will do mechanics, electricity \& magnetism, and waves. You have chosen to work on mechanics first.
+\item These notes can be cloned from Github and compiled in \LaTeX. The source files are at \url{https://github.com/devangel77b/physics-summer.git}
+\end{enumerate}
+
+\section{Kinematic variables}
+A large part of physics deals with describing motion and the \textbf{mechanics} of how bodies move. \textbf{Kinematics} is an umbrella term for mathematical descriptions of motion, and is where studies of mechanics typically begin. 
+
+Imagine Stanley in a little cat-sized space suit floating in space, moving at constant speed\sidenote{For this discussion, we will limit Stanley to moving at a slow constant speed, say \SIrange{1}{2}{\meter\per\second}. If Stanley is moving close to the speed of light, the discussion we are following will break down and will need to be more complicated. We'll just keep it simple for now and assume we are slow enough that \textbf{Newtonian} mechanics are a good approximation. All models are wrong, some models are useful.}. It is useful to review equations that describe his \textbf{position}, \textbf{velocity}, and \textbf{acceleration}. 
+
+\subsection{Position}
+For starters, let's imagine Stanley starts at out $x=\SI{0}{\meter}$ and is moving at \SI{1}{\meter\per\second}. Stanley's position after \SI{1}{\second} would be \SI{1}{\meter}; after \SI{2}{\second}, \SI{2}{\meter}, and so on. If I asked you to graph it you would plot it as shown in \fref{fig:position}.
+\begin{marginfigure}
+\caption{Stanley's position}
+\label{fig:position}
+\end{marginfigure}
+
+Physics likes to get things in equation form in order to develop compact mathematical descriptions that reduce nature into a few, minimal, experimentally supported laws. Let's write an equation for Stanley's \textbf{position as a function of time,} $x(t)$:
+\begin{equation}
+x(t) = \SI{1}{\meter\per\second} t,
+\end{equation}
+where $x$ is his position and $t$ is time\sidenote{For now we will assume time $t$ is an independent variable and distinct from position. If Stanley were traveling close to the speed of light, we would have to rethink this and include space and time in a single four-vector called space-time where they are not independent of one another.}. 
+
+If instead, Stanley started at $x(t=0)=x_0=\SI{1}{\meter}$, the equation would be
+\begin{equation}
+x(t) = \SI{1}{\meter\per\second} t + \SI{1}{\meter};
+\end{equation}
+or if he started at $x_0=\SI{2}{\meter}$,
+\begin{equation}
+x(t) = \SI{1}{\meter\per\second} t + \SI{2}{\meter};
+\end{equation}
+and so on, as shown in \fref{fig:position2}.
+\begin{marginfigure}
+\caption{Stanley's position with different starting points (initial position $x_0$)}
+\label{fig:position2}
+\end{marginfigure} 
+
+If Stanley was traveling at \SI{2}{\meter\per\second} and started at $x_0=\SI{2}{\meter}$,
+\begin{equation}
+x(t) = \SI{2}{\meter\per\second} t + \SI{2}{\meter},
+\label{eq:position3}
+\end{equation}
+as shown in \fref{fig:position3}.
+\begin{marginfigure}
+\caption{Stanley's position when he is traveling at \SI{2}{\meter\per\second} and starts at $x_0=\SI{2}{\meter}$.}
+\label{fig:position3}
+\end{marginfigure} 
+
+From algebra class you might recognize the graphs shown in figures~\ref{fig:position}-\ref{fig:position3} as the graph of a line whose equation has the form
+\begin{equation}
+y = mx + b,
+\label{eq:algebraline}
+\end{equation}
+taking care to note that our independent variable is $t$ and our dependent variable is $x$. The slope $m$ appears to be the speed Stanley is traveling (e.g. \SI{1}{\meter\per\second}, \SI{2}{\meter\per\second}, etc...) while the $y$-intercept $b$ is Stanley's initial starting position $x_0 = x(t=0)$\sidenote{This notation quirk often confuses students who have only just had algebra and are still adjusting to using symbols that have different, discipline-specific standard uses. To deal with this, I suggest putting these quantities on flash cards and reviewing them until it feels comfortable to think of $t$ as ``$x$'' in \fref{eq:algebraline}, $x$ as ``$y$'' in \fref{eq:algebraline}, and so on...}. Considering this form, we see that \fref{eq:position3} is of the form
+\begin{equation}
+x(t) = V_x t + x_0 
+\end{equation}
+where $x$ is position and $t$ is time. $V_x$ is the slope (like $m$ in \fref{eq:algebraline}) and is the constant speed Stanley is moving at. $x_0$ is the $y$-intercept (like $b$ in \fref{eq:algebraline}) and is his starting position. 
+
+\newthought{Take a moment} to convince yourself that we've adequately covered all possible cases of Stanley moving at ``slow\sidenote{``Slow'' means his speed is say less than $0.8c$, where $c=\SI{3e8}{\meter\per\second}$ is the speed of light.}'' constant velocity and starting anywhere he might like in a one-dimensional world. Stanley could also have speed \SI{0}{\meter\per\second}; what would that do? He could move backwards; what would that look like? 
+
+\subsection{Velocity}
+Let's go back to the case where Stanley's position in space is described by 
+\begin{equation}
+x(t) = 2 t + 2,
+\end{equation}
+as shown in \fref{fig:velocity1}.
+\begin{marginfigure}
+\caption{Stanley's position and velocity}
+\label{fig:velocity1}
+\end{marginfigure}
+
+If I asked you to measure Stanley's speed or velocity\sidenote{Even though they are sometimes used interchangeably in everyday colloquial English, there's a big difference between speed and velocity, but we'll come to that after we discuss vectors.} you might see how far he has gone $\Delta x$ after some time $\Delta t$ and divide the two. For example, between $t=0$ and $t=1$,
+\begin{align}
+x(0) &= 2(0)+2 &= 2 \\
+x(1) &= 2(1)+2 &= 4 \\
+\Delta x &= 4 - 2 &= 2
+\end{align}
+Combining this with $\Delta t = 1-0 = 1$ gives $V_x=\frac{2}{1}=\SI{2}{\meter\per\second}$. An astute observer will notice that this is also the \textbf{slope}\sidenote{Slope is rise over run!} of the position vs time graph in \fref{fig:velocity1}. We'll come back to that.  For now just notice that \textbf{velocity is the (time) rate of change of position}, e.g.
+\begin{equation}
+\text{velocity} = \dfrac{\text{change in position}}{\text{change in time}} = \dfrac{\Delta x}{\Delta t}
+\end{equation}
+The units of $x$ are \si{\meter}, the units of $t$ are \si{\second}, so the units of velocity $v$ are \si{\meter\per\second}. Velocity tells \textbf{how fast Stanley is moving, and in what direction}. This latter bit will become more evident when we discuss vectors next time. 
+
+\subsection{Acceleration}
+Again let's return to the case where Stanley's position and velocity are described by
+\begin{align}
+x(t) &= 2 t + 2 \\
+v_x(t) &= 2. 
+\end{align}
+as shown in \fref{fig:acceleration1}.
+\begin{marginfigure}
+\caption{Stanley's position, velocity, and acceleration}
+\label{fig:acceleration1}
+\end{marginfigure}
+How fast is Stanley's velocity changing? We said Stanley is at constant speed, so the rate at which his velocity changes is \SI{0}{\meter\per\second\squared}; in other words, he is not accelerating. We can see this by taking the change in velocity divided by the change in time, say for the interval between $t=0$ and $t=1$:
+\begin{align}
+v_x(0) &= 2 \\
+v_x(1) &= 2 \\
+\Delta v_x &= 2 - 2 = 0\\
+\end{align}
+Combining this with $\Delta t = 1-0 = 1$ gives $A_x=\frac{0}{1}=\SI{0}{\meter\per\second}$. An astute observer will notice that this is also the \textbf{slope}\sidenote{Slope is rise over run!} of the velocity vs time graph in \fref{fig:acceleration1}. We'll come back to that.  \textbf{Acceleration is the (time) rate of change of velocity}, e.g.
+\begin{equation}
+\text{acceleration} = \dfrac{\text{change in velocity}}{\text{change in time}} = \dfrac{\Delta v}{\Delta t}
+\end{equation}
+The units of $v$ are \si{\meter\per\second}, the units of $t$ are \si{\second}, so the units of acceleration $a$ are \si{\meter\per\second\squared}. While velocity tells how fast Stanley is moving, and in what direction, \textbf{acceleration tells how fast his velocity is changing}. 
+
+
+
+
+
+\section{Rates of change and derivatives; relationships between kinematics variables}
+
+\section{Areas and integrals; another set of relationships between kinematics variables}
+
+\section{Next time: vectors}
+
+\bibliography{physics9}
+\end{document}
