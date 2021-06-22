@@ -116,12 +116,57 @@ Combining this with $\Delta t = 1-0 = 1$ gives $A_x=\frac{0}{1}=\SI{0}{\meter\pe
 \end{equation}
 The units of $v$ are \si{\meter\per\second}, the units of $t$ are \si{\second}, so the units of acceleration $a$ are \si{\meter\per\second\squared}. While velocity tells how fast Stanley is moving, and in what direction, \textbf{acceleration tells how fast his velocity is changing}. 
 
-\newthought{Students sometimes get confused} about the difference between velocity and acceleration. For example, they think of a car and reason that a car goes fast when you step on the gas. What this misses, however, is that when you step on the gas pedal in a car it does not \emph{instantaneously} go fast... it accelerates and builds from a low speed to faster and faster speeds (more on this later), and that build up takes time. Velocity is like the speed. Acceleration is the \emph{rate} that velocity increases. It is possible to have high (positive) acceleration while still being at zero speed or even while heading backwards. In addition, it is possible to have a high speed (e.g. \SI{65}{mph}) and \emph{not} be accelerating\sidenote{...such as when you are driving on the NJ Turnpike at \emph{constant} speed, or if you are a space cat heading off towards the cosmos at constant speed...}. \textbf{Acceleration and velocity are different things, they have different units (\si{\meter\per\second\squared} vs \si{\meter\per\second}), best to make sure you get the two straight.} 
+\newthought{Students sometimes get confused} about the difference between velocity and acceleration. For example, they think of a car and reason that a car goes fast (high speed) when you step on the gas (``accelerator'' pedal). What this misses, however, is that when you step on the gas pedal in a car it does not \emph{instantaneously} go fast... it accelerates and builds from a low speed to faster and faster speeds (more on this later), and that build up takes time. Velocity is like the speed. Acceleration is the \emph{rate} that velocity increases. It is possible to have high (positive) acceleration while still being at zero speed or even while heading backwards. In addition, it is possible to have a high speed (e.g. \SI{65}{mph}) and \emph{not} be accelerating\sidenote{...such as when you are driving on the NJ Turnpike at \emph{constant} speed, or if you are a space cat heading off towards the cosmos at constant speed...}. \textbf{Acceleration and velocity are different things, they have different units (\si{\meter\per\second\squared} vs \si{\meter\per\second}), best to make sure you get the two straight.} 
 
 
 
 \section{Rates of change and derivatives; relationships between kinematics variables}
-\cite{greenspan1987calculus, kreysig2015advanced}
+We said the velocity is the time rate of change of position:
+\begin{equation}
+\text{velocity} = \dfrac{\text{change in position}}{\text{change in time}} = \dfrac{\Delta x}{\Delta t}.
+\label{eq:derivatives1}
+\end{equation}
+As a thought experiment, imagine how you might measure this in practice. You could measure Stanley's position at $t=\SI{0}{\second}$, then wait one second, and measure it again at $t=\SI{1}{\second}$. Would that work? Would your estimate be ``better'' if you waited for an hour? What if instead you only waited \SI{0.001}{\second} before measuring position again? 
+
+Now comes a (tiny, painless, friendly)\sidenote{Calculus theme song here: \url{https://www.youtube.com/watch?v=ioE_O7Lm0I4}} piece of \textbf{calculus}\cite{greenspan1987calculus, kreysig2015advanced}. Let me imagine taking a ``really small\sidenote{The SAT word for this is \textbf{infinitesimal}, meaning really tiny, vanishingly so.}|'' $\Delta t$. Practically, this could be like \SI{0.001}{\second}, or some other small number. You may recall an idea of taking a \textbf{limit} as $\Delta t$ approaches 0 (gets smaller), which is mathematician-speak for get close to zero (get ``really small'') but do not actually reach zero. This last bit is just because we don't like to divide by zero. Rewriting \fref{eq:derivatives1} gives
+\begin{equation}
+v = \lim_{\Delta t\to 0} \dfrac{\Delta x}{\Delta t}, 
+\label{eq:derivatives2}
+\end{equation}
+where the whole $\lim_{\Delta t\to 0}$ mumbo jumbo is read as ``the limit as $\Delta t$ approaches zero''. 
+
+Calculus has a name for \fref{eq:derivatives2}, it's called the \textbf{derivative}:
+\begin{equation}
+v = \lim_{\Delta t\to 0} \dfrac{\Delta x}{\Delta t} = \dfrac{dx}{dt}.
+\label{eq:derivatives3}
+\end{equation}
+In the calculus shorthand notation (from Leibniz) it is written as $\dfrac{dx}{dt}$, where little $d$ have replaced $\Delta$... so it shouldn't be too scary because all it means is it is the (local) slope at a point on the position $x$ vs time $t$ curve. You can think of it as giving the \textbf{slope of a line tangent to the curve at a particular instant in time $t$}. The derivative is tailor-made to help you find velocity when given position; and to find acceleration when given velocity. The relationships between these quantities are shown in \fref{fig:derivatives1}.
+\begin{figure}
+\caption{Relationships between position, velocity, and acceleration}
+\label{fig:derivatives1}
+\end{figure}
+Mathematically, the derivative can be found by evaluating the limit... but if you have ever studied calculus, you probably vaguely remember there are rules\sidenote{Do the limit once to get the rule so you know where it comes from, then learn the rules so you can do this fast.} for taking the derivatives of certain functions. For polynomials, for example:
+\begin{align}
+\frac{d}{dt} C_1 &= 0\quad\text{(derivative of constant is zero)}\\
+\frac{d}{dt} t &= 1\\
+\frac{d}{dt} C_2t &= C_2\quad\text{(can pull multiplicative constants out)}\\
+\frac{d}{dt} t^2 &= 2 t \\
+\frac{d}{dt} t^3 &= 3 t^2 \\
+\frac{d}{dt} t^b &= b t^{b-1} \\
+\frac{d}{dt} a t^b &= a b t^{b-1}\quad\text{(use for terms of a polynomial in $t$)} 
+\end{align}
+
+Our whole Stanley moving in space at constant velocity then becomes pretty simple using the rules:\sidenote{Even though the 9th graders do not use calculus to solve these, it's actually much easier if you do allow yourself this little bit of calculus as you can get the solutions much quicker... by inspection even, if you remember how to take a derivative.} 
+\begin{align}
+\text{Given}\quad x(t) &= V t + x_0 \\
+v(t) = \frac{d}{dt} x(t) &= V + 0 = V\quad\text{(take first derivative)} \\
+a(t) = \frac{d}{dt} v(t) &= 0\quad\text{(take second derivative)}
+\label{eq:derivatives4}
+\end{align}
+
+\newthought{If Stanley's position had a more complicated form}, such as, say $x(t)=\frac{1}{2}at^2 + v_0 t + x_0$, you could still do\sidenote{Try it!} the steps in \fref{eq:derivatives4}, \textbf{taking the first and second derivatives of position to get his velocity and acceleration, respectively}. This works for pretty much \textbf{any} differentiable\sidenote{Does \textbf{not} have to be smooth... Stanley could be stationary and then fire a thruster and would have a non-smooth velocity.} function $x(t)$, which physically means \textbf{Stanley is not moving at infinite speed or in two places at once}. We will allow ourselves these mathematical constraints because we said we were restricting our study to ``slow'' and also presumably non-quantum spacecats. 
+
+
 
 \section{Areas and integrals; another set of relationships between kinematics variables}
 \cite{greenspan1987calculus, kreysig2015advanced}
