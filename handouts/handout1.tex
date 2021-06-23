@@ -1,6 +1,7 @@
 \documentclass{tufte-handout}
 
-\usepackage[handout]{physics_summer}
+\newcommand\myroot{..}
+\usepackage[handout]{\myroot/physics_summer}
 
 \title{Handout \#1: Mechanics, kinematics}
 \author{D.~Evangelista and A.~Hahn}
@@ -266,10 +267,10 @@ $a t^b$ & $\frac{a}{b+1} t^{b+1} + C$ \\
 \section{Next time: vectors}
 So far, we have considered only the case of one-dimensional (1D) motion. Stanley is traveling through space in a straight line and his position can be represented by a single coordinate $x$. Clearly we might wish to examine motion in two or three dimensions. To do so we will extend our notions of position, velocity, and acceleration using \textbf{vectors}, which will give us a shorthand way to handle two or three (or more) dimensions all at once. 
 
-\bibliography{physics9}
+\bibliography{\myroot/physics9}
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=\columnwidth]{stanley1.jpg}
+\includegraphics[width=\columnwidth]{\myroot/figures/stanley1.jpg}
 \end{center}
 \caption{Stanley in space}
 \end{figure}

@@ -1,6 +1,7 @@
 \documentclass [hw,noanswers]{exam}
 
-\usepackage{physics_summer}
+\newcommand\myroot{..}
+\usepackage{\myroot/physics_summer}
 
 \title{Problem Set \#1: Intro kinematics}
 \author{\mobeardInstructorShort}
@@ -32,7 +33,7 @@ Total distance is \SI{340}{\meter}. Total time is \SI{85}{\second}. Average spee
 \question\label{q:2} Xuan the guide dog puppy is riding in a 2000 Ford Ranger. He records his position versus time as shown in \fref{fig:q2}. Develop an appropriate equation for Xuan's position $x(t)$, velocity $v(t)$ and acceleration $a(t)$; write the equations and graph all three. Discuss some issues you may have in estimating the velocity and acceleration. 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=0.75\columnwidth]{hw1p2.png}
+\includegraphics[width=0.75\columnwidth]{\myroot/figures/hw1p2.png}
 \end{center}
 \caption{Question~\ref{q:2}}
 \label{fig:q2}
@@ -90,5 +91,5 @@ We could then assess if this speed is fast enough to be a hazard; think of ways 
 \end{parts}
 \end{questions}
 
-\bibliography{physics9}
+\bibliography{\myroot/physics9}
 \end{document}
