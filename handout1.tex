@@ -145,16 +145,33 @@ In the calculus shorthand notation (from Leibniz) it is written as $\dfrac{dx}{d
 \caption{Relationships between position, velocity, and acceleration}
 \label{fig:derivatives1}
 \end{figure}
-Mathematically, the derivative can be found by evaluating the limit... but if you have ever studied calculus, you probably vaguely remember there are rules\sidenote{Do the limit once to get the rule so you know where it comes from, then learn the rules so you can do this fast.} for taking the derivatives of certain functions. For polynomials, for example:
-\begin{align}
-\frac{d}{dt} C_1 &= 0\quad\text{(derivative of constant is zero)}\\
-\frac{d}{dt} t &= 1\\
-\frac{d}{dt} C_2t &= C_2\quad\text{(can pull multiplicative constants out)}\\
-\frac{d}{dt} t^2 &= 2 t \\
-\frac{d}{dt} t^3 &= 3 t^2 \\
-\frac{d}{dt} t^b &= b t^{b-1} \\
-\frac{d}{dt} a t^b &= a b t^{b-1}\quad\text{(use for terms of a polynomial in $t$)} 
-\end{align}
+Mathematically, the derivative can be found by evaluating the limit... but if you have ever studied calculus, you probably vaguely remember there are rules\sidenote{Do the limit once to get the rule so you know where it comes from, then learn the rules so you can do this fast.} for taking the derivatives of certain functions (see \fref{tab:derivatives}). . 
+\begin{margintable}
+\caption{Some useful derivatives for simple kinematics}
+\label{tab:derivatives}
+\begin{center}
+\small
+\begin{tabular}{cc}
+\toprule
+$f(t)$ & $\int f(t) dt$ \\
+\midrule
+$0$ & $0$ \\
+$1$ & $0$ \\
+$a$ & $0^*$\\
+$t$ & $1$ \\
+$at$ & $a^\dag$\\
+$t^2$ & $2$ t \\
+$t^3$ & $3 t^2$ \\
+$t^b$ & $b t^{b-1}$ \\
+$at^b$ & $a b t^{b-1 \ddag}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\scriptsize
+$^*$, derivative of constant is zero
+$^\dag$, can pull out multiplicative constants
+$^\ddag$, useful for polynomials  
+\end{margintable}
 
 Our whole Stanley moving in space at constant velocity then becomes pretty simple using the rules:\sidenote{Even though the 9th graders do not use calculus to solve these, it's actually much easier if you do allow yourself this little bit of calculus as you can get the solutions much quicker... by inspection even, if you remember how to take a derivative.} 
 \begin{align}
@@ -166,10 +183,83 @@ a(t) = \frac{d}{dt} v(t) &= 0\quad\text{(take second derivative)}
 
 \newthought{If Stanley's position had a more complicated form}, such as, say $x(t)=\frac{1}{2}at^2 + v_0 t + x_0$, you could still do\sidenote{Try it!} the steps in \fref{eq:derivatives4}, \textbf{taking the first and second derivatives of position to get his velocity and acceleration, respectively}. This works for pretty much \textbf{any} differentiable\sidenote{Does \textbf{not} have to be smooth... Stanley could be stationary and then fire a thruster and would have a non-smooth velocity.} function $x(t)$, which physically means \textbf{Stanley is not moving at infinite speed or in two places at once}. We will allow ourselves these mathematical constraints because we said we were restricting our study to ``slow'' and also presumably non-quantum spacecats. 
 
-
+Derivatives gave us a way to go from position to velocity to acceleration. \newthought{Is there a way to go from acceleration to velocity to position?}
 
 \section{Areas and integrals; another set of relationships between kinematics variables}
-\cite{greenspan1987calculus, kreysig2015advanced}
+Let us return to the case of motion at constant velocity: 
+\begin{align}
+x(t) &= V t + x_0 \\
+v(t) &= V \\
+a(t) &= 0.
+\end{align}
+
+For starters, can we get position from velocity? Sure, that's easy, because in math class we have drilled ourselves to know distance is speed times time:
+\begin{align}
+\text{distance} &= \text{speed} \times \text{time} \\
+x &= V t
+\label{eq:integrals1}
+\end{align}
+
+A graphical interpretation of \fref{eq:integrals1} is that position looks like the \textbf{area} of a rectangle whose height is $V$ and whose width is $t$. In other words, it appears to be the area under the curve of $v(t)$, less a constant term $x_0$. Similarly, the velocity looks like the area of a rectangle whose height is $0$, whose width is $t$, less a constant term $V$. 
+
+In calculus, when we start dealing with areas under a curve, we are dealing with \textbf{integrals}\cite{greenspan1987calculus, kreysig2015advanced}. Along with derivatives, they are useful here because they give us a way to go from acceleration to velocity to position for any (integrable) case of acceleration. Since acceleration is tied to the force exerted on an object, this is pretty useful for finding equations of motion from forces acting on a body, which is a major task for mechanics within physics. For further details, refer to \cite{greenspan1987calculus}, but the general idera is to break a curve into many little rectangles of width $\Delta t$ and then take the limit as $\Delta t$ approaches zero. Where have we heard that idea before? We did something like that when taking derivatives, and there is a relationship between integrals and (anti)derivatives. 
+
+Let's try the constant acceleration case in two ways: using areas (from geometry) as well as seeing if we can connect integrals or antiderivatives. For constant acceleration:
+\begin{equation}
+a(t) = A\quad\text{(constant)}.
+\end{equation}
+Let's imagine $v(t)$ as the area of a rectangle of height $A$ and width $t$:
+\begin{equation}
+v(t) = A t + C_1
+\end{equation}
+where $C_1$ is that constant we had to think about before. $x(t)$ ought to be the area of $v(t)$, which we can break up into a rectangle of constant height $C_1$, and a little triangle piece of height $A t$ and width $t$. The area of the rectangle is $C_1 t$, while the area of the triangle piece is $\frac{1}{2} b h$ or $\frac{1}{2} (t) (At)$:
+\begin{equation}
+x(t) = \frac{1}{2} A t^2 + C_1 t + C_2. 
+\end{equation}
+Is it right? Well taking the first derivative gives $v(t) = \frac{d}{dt}x(t) = A t + C_1$, and taking the second derivative gives $a(t) = \frac{d^2}{dt^2} x(t) = A$ which seems right. Also notice that the area under $a(t)$ seems to be a function $v(t)$ whose derivative is $a(t)$; and the area under $v(t)$ seems to be a function $x(t)$ whose derivative is $v(t)$. More generally,
+\begin{align}
+\text{If}\quad f(t) &= \frac{d}{dt} F(t) \\
+f(t) &= \frac{dF}{dt} \\
+f(t) dt &= dF \\
+\int f(t) dt &= F(t) + C.
+\end{align}
+The integral $\int$ takes many, many little rectangles and sums them up (the sign is supposed to look like a stylized S representing sum). $C$ is the constant of integration.  Integrals are often derived via antiderivatives or other clever steps, but once you figure them out you can see and remember patterns, which are often provided in tables of integrals, for example, see \fref{tab:integrals}
+\begin{margintable}
+\caption{Some useful integrals for simple kinematics}
+\label{tab:integrals}
+\begin{center}
+\small
+\begin{tabular}{cc}
+\toprule
+$f(t)$ & $\int f(t) dt$ \\
+\midrule
+$0$ & $C$ \\
+$1$ & $t + C$ \\
+$a$ & $at + C$ \\
+$t$ & $\frac{1}{2} t^2 + C$ \\
+$at$ & $\frac{1}{2} at^2 + C$ \\
+$t^2$ & $\frac{1}{3} t^3 + C$ \\
+$a t^b$ & $\frac{a}{b+1} t^{b+1} + C$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{margintable}
+
+\newthought{To take it back to physics}, \textbf{derivatives gave us a way to go from position to velocity to acceleration}:
+\begin{align}
+\text{(position)}\quad x(t) & \\
+\text{(velocity)}\quad v(t) &= \frac{d}{dt} x(t)\quad\text{(first derivative)} \\
+\text{(acceleration)}\quad a(t) &= \frac{d}{dt} v(t) = \frac{d^2}{dt^2} x(t)\quad\text{(second derivative)}.
+\end{align}
+\textbf{Integrals give us a way to go from acceleration to velocity to position}:
+\begin{align}
+\text{(acceleration)}\quad a(t) & \\
+\text{(velocity)}\quad v(t) &= \int a(t) dt + C_1 \\
+\text{(position)}\quad x(t) &= \int v(t) dt + C_2.
+\end{align}
+
+
+
 
 \section{Next time: vectors}
 So far, we have considered only the case of one-dimensional (1D) motion. Stanley is traveling through space in a straight line and his position can be represented by a single coordinate $x$. Clearly we might wish to examine motion in two or three dimensions. To do so we will extend our notions of position, velocity, and acceleration using \textbf{vectors}, which will give us a shorthand way to handle two or three (or more) dimensions all at once. 
