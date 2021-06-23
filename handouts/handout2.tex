@@ -1,0 +1,145 @@
+\documentclass{tufte-handout}
+
+\newcommand\myroot{..}
+\usepackage[handout]{\myroot/physics_summer}
+
+\title{Handout \#2: Vectors}
+\author{D.~Evangelista}
+\date{\printdate{6/21/2021}}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item Suggested reading is chapter 1 of \citeauthor{kleppner2014introduction}\cite{kleppner2014introduction} and chapter 5 of \citeauthor{greenspan1987calculus}\cite{greenspan1987calculus}. 
+\item Last time: kinematics in 1D. This time: vectors (so we can deal with 2D and 3D)
+\item These notes can be cloned from Github and compiled in \LaTeX\sidenote{The source files are at \url{https://github.com/devangel77b/physics-summer.git}}
+\end{enumerate}
+
+\section{Review: 1D kinematics} 
+Last time we dealt with kinematics in 1D:
+\begin{align}
+\text{(position, \si{\meter})}\quad x(t) & \\
+\text{(velocity, \si{\meter\per\second})}\quad v(t) &= \frac{d}{dt} x(t) \\
+\text{(acceleration, \si{\meter\per\second\squared})}\quad a(t) &= \frac{d}{dt} v(t)
+\end{align}
+with time $t$ in \si{\second}. Each of the quantities $x(t)$, $v(t)$ and $a(t)$ could be \textbf{functions of time} and each had its own set of \textbf{units} (\si{\meter}, \si{\meter\per\second}, and \si{\meter\per\second\squared}, respectively). Also, they each had a sign, i.e. a \textbf{direction, relative to some origin}... for example up might be positive and down might be negative; or right might be positive and left negative. In general, the origin and sign convention are up to you to choose, so long as you are consistent 
+
+\section{Dealing with two- and three-dimensional motion}
+What can we do to extend our ideas to allow us to deal with more realistic motion in two or three dimensions? Use more numbers!  Consider position; instead of representing a position by a single number equal to the distance along a 1D number line, we could imagine using two or three numbers to represent position in 2D or 3D. In 2D for example:
+\begin{equation}
+\vec{x} = (41, 42),
+\end{equation}
+or in 3D, 
+\begin{equation}
+\vec{x} = (7,4,1776).
+\end{equation}
+A natural interpretation of these is a point in space with the given (x,y,z) coordinates... but to avoid confusion of $x$ the (scalar) coordinate with $\vec{x}$ the position, we put a little arrow on top of the position to show it is a \textbf{vector}.  Other ways you may see a vector represented include boldface $\mathbf{x}$, brackets $\begin{bmatrix} x\end{bmatrix}$, or a single underline $\underline{x}$.
+
+\textbf{Vectors} are like a collection of 2 or 3 or more numbers. Each number is called a \textbf{component}, e.g. the $x$ component is 7, the $y$ component is 4, and the $z$ component is 1776.\marginnote{More formally, each of the components is usually a scalar multiplier applied to one of a set of \textbf{basis vectors}. The basis vectors are often chosen to be \textbf{unit vectors} (magnitude 1) and to be \textbf{orthogonal} to one another, though they don't necessarily have to be...}.  We'd like to use these vectors to represent positions, velocities, and accelerations in 3D, so it is useful to briefly consider how to work with them mathematically.
+
+\subsection{Vector representation}
+Let's consider a vector pointing from the origin to the point $(x,y,z)=(3,4,5)$. We typically draw it as an arrow with the tip (pointy end) at $(3,4,5)$ and the tail at the origin, as shown in \fref{fig:vector1}. 
+\begin{marginfigure}
+\caption{Vector $\vec{x}=3\hat{\imath} + 4\hat{\jmath} + 5\hat{k}$}
+\label{fig:vector1}
+\end{marginfigure}
+There are a few ways to write down this vector $\vec{x}$:
+\begin{align}
+\vec{x} &= 3\hat{\imath} + 4\hat{\jmath} + 5\hat{k} \\
+&= 3\hat{x} + 4\hat{y} + 5\hat{z} \\
+&= \begin{bmatrix} 3 \\ 4 \\ 5 \end{bmatrix}. 
+\end{align}
+The first two forms represent the vector as a \textbf{linear combination} of basis unit vectors $(\hat{\imath}, \hat{\jmath}, \hat{k})$ or $(\hat{x}, \hat{y}, \hat{z})$, respectively\sidenote{Really no difference between these other than personal preference. Some engineers tend to use the second form to avoid confusion with $i$ for current or $i$ or $j$ for $\sqrt{-1}$.}. The last form gives the components in a \textbf{column vector} representation\sidenote{This is often useful for linear algebra, rotation, or use in programming and numerical methods.}. There are other ways to represent vectors\sidenote{such as just writing down the indices, ``indicial notation'' to provide a one line shorthand}, and alternative \textbf{coordinate systems}\sidenote{e.g. polar, cylindrical, spherical...} useful for certain special purposes or problem geometries, but these will suffice for now. 
+
+\subsection{A few simple vector operations}
+\begin{enumerate}
+\item\label{item1} \textbf{Scalar multiplication.} When we multiply scalar $a$ by a vector $\vec{x}$\marginnote{scalar $\times$ vector}, we simply distribute the scalar to each component of the vector:
+\begin{align}
+a \vec{x} &= a (x_i \hat{\imath} + x_j \hat{\jmath} + x_k \hat{k})  \\
+&= ax_i \hat{\imath} + ax_j \hat{\jmath} + ax_k \hat{k} \\
+&= \begin{bmatrix} ax_i \\ ax_j \\ ax_k \end{bmatrix}
+\end{align}
+\item It follows from item~\ref{item1} that a vector times 1 is itself, i.e.
+\begin{equation}
+1 \vec{x} = \vec{x}
+\end{equation}
+\item It also follows from item~\ref{item1} that a vector times 0 is a zero vector, i.e.
+\begin{align}
+0 \vec{x} &= \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} \\
+&= \mathbf{0} 
+\end{align}
+\item The \textbf{magnitude of a vector} is its length, i.e.\marginnote{magnitude of a vector}
+\begin{equation}
+\text{magnitude}\quad | \vec{x} | = \sqrt{x_i^2 + x_j^2 + x_k^2}.
+\end{equation}
+
+\item \textbf{Addition and subtraction.} To add two vectors\marginnote{vector addition and subtraction}, add the components. The vectors must have the same dimensions. If $\vec{r}_1 = \begin{bmatrix}a&b& c\end{bmatrix}^T$ and $\vec{r}_2 = \begin{bmatrix}d&e&f\end{bmatrix}^T$, then
+\begin{align}
+\vec{r}_1 + \vec{r}_2 &= \begin{bmatrix}a+d\\b+e\\c+f\end{bmatrix} \\
+\vec{r}_1 - \vec{r}_2 &= \begin{bmatrix}a-d\\b-e\\c-f\end{bmatrix}
+\end{align}
+\marginnote[-0.5in]{If you're feeling overwhelmed, scalar multiplication and vector addition/subtraction together are enough to cover simple 3D kinematics.}
+
+\item \textbf{Dot (a.k.a. scalar, a.k.a. inner) product.} There are two ways to multiply vectors\marginnote{dot product, scalar product, inner product}, this is one of them. In the dot product, multiply each of the corresponding components and then add the result. The dot product produces a scalar. The multiplicands must have the same dimensions. If $\vec{r}_1 = \begin{bmatrix}a&b& c\end{bmatrix}^T$ and $\vec{r}_2 = \begin{bmatrix}d&e&f\end{bmatrix}^T$, then
+\begin{align}
+\vec{r}_1 \cdot \vec{r}_2 &= ad + be + cf \\
+&= | \vec{r}_1 | | \vec{r}_2 | \cos\theta
+\end{align}
+where $\theta$ is the angle between the vectors. The dot product will be useful when we consider \textbf{work and energy}, as it sort of reflects how ``aligned'' two vector quantities (say force and displacement) are. 
+
+\item \textbf{Cross (a.k.a. vector, a.k.a. outer) product.} For completeness, the other way to multiply two vectors\marginnote{cross product, vector product, outer product} is a bit more complicated. If $\vec{r}_1 = \begin{bmatrix}a&b& c\end{bmatrix}^T$ and $\vec{r}_2 = \begin{bmatrix}d&e&f\end{bmatrix}^T$, then
+\begin{align}
+\vec{r}_1 \times \vec{r}_2 &= 
+\det\begin{bmatrix} 
+\hat{\imath} & \hat{\jmath} & \hat{k} \\
+a & b & c \\
+d & e & f 
+\end{bmatrix} \\
+&= \hat{\imath}(bf - ec) - \hat{\jmath} (af-dc) + \hat{k} (ae-db).
+\end{align}
+This one is a bit harder to interpret; it results in a vector that is perpendicular to $\vec{r}_1$ and $\vec{r}_2$. It is used when dealing with torque and rotational motion, so we may not deal with it much further. It also shows up in magnetic fields and forces on moving charges, and when considering energy transmission by certain waves phenomena, which we may see again. 
+\end{enumerate}
+
+\section{Kinematics variables as vectors}
+\textbf{Position} is straightforward; $\vec{x}$ represents the position in 3D Cartesian $(x,y,z)$ coordinates:
+\begin{equation}
+\vec{x} = \begin{bmatrix} x_i \\ x_j \\ x_k \end{bmatrix}.
+\end{equation}
+Its units are still \si{\meter}. On a graph, it is often shown as an arrow pointing from the origin to the point $(x_i, x_j, x_k)$. 
+
+\textbf{Velocity} is still the same too:
+\begin{equation}
+\vec{v}(t) = \dfrac{d\vec{x}(t)}{dt}.
+\end{equation}
+We can distribute the $\frac{d}{dt}$ operator to get
+\begin{align}
+\vec{v} &= \frac{d}{dt} \begin{bmatrix} x_i \\ x_j \\ x_k \end{bmatrix} \\
+&= \begin{bmatrix} \frac{dx_i}{dt} \\ \frac{dx_j}{dt} \\ \frac{dx_k}{dt} \end{bmatrix}.
+\end{align}
+Its units are still \si{\meter\per\second}. On a graph, it appears as a vector tangent to the curve of $\vec{x}(t)$ in 3D. 
+
+Likewise, \textbf{acceleration} is still the same:
+\begin{equation}
+\vec{a}(t) = \dfrac{d\vec{v}(t)}{dt}.
+\end{equation}
+We again distribute the $\frac{d}{dt}$ operator to get
+\begin{align}
+\vec{a} &= \frac{d}{dt} \begin{bmatrix} v_i \\ v_j \\ v_k \end{bmatrix} \\
+&= \begin{bmatrix} \frac{dv_i}{dt} \\ \frac{dv_j}{dt} \\ \frac{dv_k}{dt} \end{bmatrix}\\
+&= \begin{bmatrix} \frac{d^2x_i}{dt^2} \\ \frac{d^2x_j}{dt^2} \\ \frac{d^2x_k}{dt^2} \end{bmatrix}.
+\end{align}
+Its units are still \si{\meter\per\second\squared}. 
+
+\newthought{In multiple dimensions, our vector kinematics equations become}\sidenote{TLDR skip to here}\sidenote{You might complain what is special about $t$, or about just having three dimensions... for now we won't worry about those...}
+\begin{align}
+\text{(position, \si{\meter})}\quad \vec{x}(t) & \\
+\text{(velocity, \si{\meter\per\second})}\quad \vec{v}(t) &= \frac{d}{dt} \vec{x}(t) \\
+\text{(acceleration, \si{\meter\per\second\squared})}\quad \vec{a}(t) &= \frac{d}{dt} \vec{v}(t)
+\end{align}
+
+\section{Next time: motion in 2D}
+Next time we'll look at some important cases of motion in 2D using these concepts. 
+
+\nocite{carroll2019spacetime, einstein1915relativity}
+\bibliography{\myroot/physics9}
+\end{document}
