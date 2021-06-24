@@ -22,20 +22,20 @@ Last time we dealt with kinematics in 1D:
 \text{(velocity, \si{\meter\per\second})}\quad v(t) &= \frac{d}{dt} x(t) \\
 \text{(acceleration, \si{\meter\per\second\squared})}\quad a(t) &= \frac{d}{dt} v(t)
 \end{align}
-with time $t$ in \si{\second}. Each of the quantities $x(t)$, $v(t)$ and $a(t)$ could be \textbf{functions of time} and each had its own set of \textbf{units} (\si{\meter}, \si{\meter\per\second}, and \si{\meter\per\second\squared}, respectively). Also, they each had a sign, i.e. a \textbf{direction, relative to some origin}... for example up might be positive and down might be negative; or right might be positive and left negative. In general, the origin and sign convention are up to you to choose, so long as you are consistent 
+with time $t$ in \si{\second}. Each of the quantities $x(t)$, $v(t)$ and $a(t)$ could be \textbf{functions of time} and each had its own set of \textbf{units} (\si{\meter}, \si{\meter\per\second}, and \si{\meter\per\second\squared}, respectively). Also, they each had a sign, i.e. a \textbf{direction, relative to some origin}... for example up might be positive and down might be negative; or right might be positive and left negative. In general, the origin and sign convention are up to you to choose, so long as you are consistent.
 
 \section{Dealing with two- and three-dimensional motion}
 What can we do to extend our ideas to allow us to deal with more realistic motion in two or three dimensions? Use more numbers!  Consider position; instead of representing a position by a single number equal to the distance along a 1D number line, we could imagine using two or three numbers to represent position in 2D or 3D. In 2D for example:
 \begin{equation}
-\vec{x} = (41, 42),
+\vec{x} = (41, 42) \si{\meter},
 \end{equation}
 or in 3D, 
 \begin{equation}
-\vec{x} = (7,4,1776).
+\vec{x} = (7,4,1776) \si{\meter}.
 \end{equation}
 A natural interpretation of these is a point in space with the given (x,y,z) coordinates... but to avoid confusion of $x$ the (scalar) coordinate with $\vec{x}$ the position, we put a little arrow on top of the position to show it is a \textbf{vector}.  Other ways you may see a vector represented include boldface $\mathbf{x}$, brackets $\begin{bmatrix} x\end{bmatrix}$, or a single underline $\underline{x}$.
 
-\textbf{Vectors} are like a collection of 2 or 3 or more numbers. Each number is called a \textbf{component}, e.g. the $x$ component is 7, the $y$ component is 4, and the $z$ component is 1776.\marginnote{More formally, each of the components is usually a scalar multiplier applied to one of a set of \textbf{basis vectors}. The basis vectors are often chosen to be \textbf{unit vectors} (magnitude 1) and to be \textbf{orthogonal} to one another, though they don't necessarily have to be...}.  We'd like to use these vectors to represent positions, velocities, and accelerations in 3D, so it is useful to briefly consider how to work with them mathematically.
+\textbf{Vectors} are like a collection of 2 or 3 or more numbers. Each number is called a \textbf{component}, e.g. the $x$ component is 7, the $y$ component is 4, and the $z$ component is 1776\marginnote{More formally, each of the components is usually a scalar multiplier applied to one of a set of \textbf{basis vectors}. The basis vectors are often chosen to be \textbf{unit vectors} (magnitude 1) and to be \textbf{orthogonal} to one another, though they don't necessarily have to be...}.  We'd like to use these vectors to represent positions, velocities, and accelerations in 3D, so it is useful to briefly consider how to work with them mathematically.
 
 \subsection{Vector representation}
 Let's consider a vector pointing from the origin to the point $(x,y,z)=(3,4,5)$. We typically draw it as an arrow with the tip (pointy end) at $(3,4,5)$ and the tail at the origin, as shown in \fref{fig:vector1}. 
@@ -49,7 +49,7 @@ There are a few ways to write down this vector $\vec{x}$:
 &= 3\hat{x} + 4\hat{y} + 5\hat{z} \\
 &= \begin{bmatrix} 3 \\ 4 \\ 5 \end{bmatrix}. 
 \end{align}
-The first two forms represent the vector as a \textbf{linear combination} of basis unit vectors $(\hat{\imath}, \hat{\jmath}, \hat{k})$ or $(\hat{x}, \hat{y}, \hat{z})$, respectively\sidenote{Really no difference between these other than personal preference. Some engineers tend to use the second form to avoid confusion with $i$ for current or $i$ or $j$ for $\sqrt{-1}$.}. The last form gives the components in a \textbf{column vector} representation\sidenote{This is often useful for linear algebra, rotation, or use in programming and numerical methods.}. There are other ways to represent vectors\sidenote{such as just writing down the indices, ``indicial notation'' to provide a one line shorthand}, and alternative \textbf{coordinate systems}\sidenote{e.g. polar, cylindrical, spherical...} useful for certain special purposes or problem geometries, but these will suffice for now. 
+The first two forms represent the vector as a \textbf{linear combination} of basis unit vectors $(\hat{\imath}, \hat{\jmath}, \hat{k})$ or $(\hat{x}, \hat{y}, \hat{z})$, respectively\sidenote{Really no difference between these other than personal preference. Some engineers tend to use the second form to avoid confusion with $i$ for current or $i$ or $j$ for $\sqrt{-1}$.}. The ``hats'' (e.g. $\hat{x}$ ``$x$ hat'') mean the bases are unit vectors with magnitude 1. The last form gives the components in a \textbf{column vector} representation\sidenote{This is often useful for linear algebra, rotation, or use in programming and numerical methods.}. There are other ways to represent vectors\sidenote{such as just writing down the indices, ``indicial notation'' to provide a one line shorthand}, and alternative \textbf{coordinate systems}\sidenote{e.g. polar, cylindrical, spherical...} useful for certain special purposes or problem geometries, but these will suffice for now. 
 
 \subsection{A few simple vector operations}
 \begin{enumerate}
@@ -66,26 +66,28 @@ a \vec{x} &= a (x_i \hat{\imath} + x_j \hat{\jmath} + x_k \hat{k})  \\
 \item It also follows from item~\ref{item1} that a vector times 0 is a zero vector, i.e.
 \begin{align}
 0 \vec{x} &= \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} \\
-&= \mathbf{0} 
+&= \mathbf{0}\quad\text{(a vector)} 
 \end{align}
 \item The \textbf{magnitude of a vector} is its length, i.e.\marginnote{magnitude of a vector}
 \begin{equation}
 \text{magnitude}\quad | \vec{x} | = \sqrt{x_i^2 + x_j^2 + x_k^2}.
+\label{eq:magnitude}
 \end{equation}
+The length in \fref{eq:magnitude} is obtained using the Pythagorean theorem, which explains the square root and squares. 
 
-\item \textbf{Addition and subtraction.} To add two vectors\marginnote{vector addition and subtraction}, add the components. The vectors must have the same dimensions. If $\vec{r}_1 = \begin{bmatrix}a&b& c\end{bmatrix}^T$ and $\vec{r}_2 = \begin{bmatrix}d&e&f\end{bmatrix}^T$, then
+\item \textbf{Addition and subtraction.} To add two vectors\marginnote{vector addition and subtraction}, add the components. The vectors must have the same dimensions (same number of components). If $\vec{r}_1 = \begin{bmatrix}a&b& c\end{bmatrix}^T$ and $\vec{r}_2 = \begin{bmatrix}d&e&f\end{bmatrix}^T$, then
 \begin{align}
 \vec{r}_1 + \vec{r}_2 &= \begin{bmatrix}a+d\\b+e\\c+f\end{bmatrix} \\
 \vec{r}_1 - \vec{r}_2 &= \begin{bmatrix}a-d\\b-e\\c-f\end{bmatrix}
 \end{align}
 \marginnote[-0.5in]{If you're feeling overwhelmed, scalar multiplication and vector addition/subtraction together are enough to cover simple 3D kinematics.}
 
-\item \textbf{Dot (a.k.a. scalar, a.k.a. inner) product.} There are two ways to multiply vectors\marginnote{dot product, scalar product, inner product}, this is one of them. In the dot product, multiply each of the corresponding components and then add the result. The dot product produces a scalar. The multiplicands must have the same dimensions. If $\vec{r}_1 = \begin{bmatrix}a&b& c\end{bmatrix}^T$ and $\vec{r}_2 = \begin{bmatrix}d&e&f\end{bmatrix}^T$, then
+\item \textbf{Dot (a.k.a. scalar, a.k.a. inner) product.} There are two ways to multiply vectors\marginnote{dot product, scalar product, inner product}; this is one of them. In the dot product, multiply each of the corresponding components and then add the result. The dot product produces a scalar. The multiplicands must have the same dimensions. If $\vec{r}_1 = \begin{bmatrix}a&b& c\end{bmatrix}^T$ and $\vec{r}_2 = \begin{bmatrix}d&e&f\end{bmatrix}^T$, then
 \begin{align}
 \vec{r}_1 \cdot \vec{r}_2 &= ad + be + cf \\
 &= | \vec{r}_1 | | \vec{r}_2 | \cos\theta
 \end{align}
-where $\theta$ is the angle between the vectors. The dot product will be useful when we consider \textbf{work and energy}, as it sort of reflects how ``aligned'' two vector quantities (say force and displacement) are. 
+where $\theta$ is the angle between the vectors. Derivation of the second form is beyond the scope of these notes but may be assigned for homework\sidenote{Hint: use the law of cosines}. The dot product will be useful when we consider \textbf{work and energy}, as it reflects how ``aligned'' two vector quantities (say force and displacement) are. 
 
 \item \textbf{Cross (a.k.a. vector, a.k.a. outer) product.} For completeness, the other way to multiply two vectors\marginnote{cross product, vector product, outer product} is a bit more complicated. If $\vec{r}_1 = \begin{bmatrix}a&b& c\end{bmatrix}^T$ and $\vec{r}_2 = \begin{bmatrix}d&e&f\end{bmatrix}^T$, then
 \begin{align}
@@ -101,11 +103,11 @@ This one is a bit harder to interpret; it results in a vector that is perpendicu
 \end{enumerate}
 
 \section{Kinematics variables as vectors}
-\textbf{Position} is straightforward; $\vec{x}$ represents the position in 3D Cartesian $(x,y,z)$ coordinates:
+\textbf{Position} is straightforward; $\vec{x}$ represents the position in 3D Cartesian $(x,y,z)$ coordinates\sidenote{The coordinates are $x$, $y$, and $z$. The basis vectors are either $\hat{\imath}, \hat{\jmath}, \hat{k}$ or $\hat{x}, \hat{y}, \hat{z}$.} :
 \begin{equation}
 \vec{x} = \begin{bmatrix} x_i \\ x_j \\ x_k \end{bmatrix}.
 \end{equation}
-Its units are still \si{\meter}. On a graph, it is often shown as an arrow pointing from the origin to the point $(x_i, x_j, x_k)$. 
+Its units are still \si{\meter}. On a graph, it is often shown as an arrow pointing from the origin to the point $(x_i, x_j, x_k)$\sidenote{Draw this in the margins right now!}. 
 
 \textbf{Velocity} is still the same too:
 \begin{equation}
